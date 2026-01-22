@@ -1,14 +1,18 @@
 import { Layout } from '@/components/layout/Layout';
 import { HeroSection } from '@/components/home/HeroSection';
-import { LifestyleSection } from '@/components/home/LifestyleSection';
-import { WhoWeAreSection } from '@/components/home/WhoWeAreSection';
+import { TrustStatementSection } from '@/components/home/TrustStatementSection';
+import { DayInLifeSection } from '@/components/home/DayInLifeSection';
+import { WhyThisWorksSection } from '@/components/home/WhyThisWorksSection';
+import { HowToGetStartedSection } from '@/components/home/HowToGetStartedSection';
 
 const Index = () => {
   return (
     <Layout>
       <HeroSection />
-      <LifestyleSection />
-      <WhoWeAreSection />
+      <TrustStatementSection />
+      <DayInLifeSection />
+      <WhyThisWorksSection />
+      <HowToGetStartedSection />
     </Layout>
   );
 };
