@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Layout } from '@/components/layout/Layout';
-import { AnimatedSection } from '@/components/ui/AnimatedSection';
+import { AnimatedSection, AnimatedTextBlock, AnimatedBenefit } from '@/components/ui/AnimatedSection';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { ClipboardCheck, GraduationCap, Home, ArrowRight, Check } from 'lucide-react';
+import { ClipboardCheck, GraduationCap, Home, ArrowRight, Check, MessageSquare, Headphones, BookOpen, Users } from 'lucide-react';
 
 const steps = [
   {
@@ -25,6 +25,37 @@ const steps = [
   },
 ];
 
+const whatWeOffer = [
+  {
+    icon: BookOpen,
+    title: 'Transparent onboarding',
+    description: 'No surprises. You\'ll know exactly what to expect at each stage.',
+  },
+  {
+    icon: GraduationCap,
+    title: 'Paid preparation',
+    description: 'Your time is valuable from the start. Training is compensated.',
+  },
+  {
+    icon: Headphones,
+    title: 'Ongoing support',
+    description: 'Questions? Challenges? We\'re here to help you succeed.',
+  },
+  {
+    icon: MessageSquare,
+    title: 'Clear communication',
+    description: 'Regular updates and straightforward expectations.',
+  },
+];
+
+const whatWeExpect = [
+  'Professional communication in all interactions',
+  'Reliability and follow-through on commitments',
+  'Willingness to learn and improve',
+  'A quiet, dedicated workspace',
+  'Stable internet connection',
+];
+
 function StepCard({ step, index }: { step: typeof steps[0]; index: number }) {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
   const Icon = step.icon;
@@ -41,15 +72,15 @@ function StepCard({ step, index }: { step: typeof steps[0]; index: number }) {
                      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms`,
       }}
     >
-      <div className="bg-card border border-border rounded-xl p-8 h-full relative overflow-hidden group hover:border-primary/30 transition-colors duration-300">
+      <div className="bg-card border border-border rounded-3xl p-8 h-full relative overflow-hidden group hover:border-primary/30 transition-colors duration-300">
         {/* Step number */}
         <span className="absolute top-6 right-6 text-6xl font-bold text-primary/10">
           {step.number}
         </span>
         
-        {/* Icon with stroke draw effect */}
+        {/* Icon */}
         <div
-          className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6"
+          className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-6"
           style={{
             opacity: isVisible ? 1 : 0,
             transition: `opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1) ${delay + 200}ms`,
@@ -86,7 +117,6 @@ export default function GetStarted() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Frontend only - just show success state
     setIsSubmitted(true);
   };
 
@@ -100,10 +130,10 @@ export default function GetStarted() {
               Get Started
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground text-balance">
-              How It Works
+              How the Process Works
             </h1>
             <p className="mt-6 text-xl text-muted-foreground max-w-2xl mx-auto">
-              Three simple steps to start your remote career with Nexalight.
+              Clear, linear, honest. Here's exactly how to get started with Nexalight.
             </p>
           </AnimatedSection>
         </div>
@@ -116,6 +146,77 @@ export default function GetStarted() {
             {steps.map((step, index) => (
               <StepCard key={index} step={step} index={index} />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What to Expect From Us */}
+      <section className="py-20 md:py-32 bg-surface">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <AnimatedSection className="text-center mb-16">
+              <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4">
+                Our Commitment
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                What to Expect From Us
+              </h2>
+            </AnimatedSection>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              {whatWeOffer.map((item, index) => {
+                const Icon = item.icon;
+                return (
+                  <AnimatedBenefit key={index} index={index}>
+                    <div className="flex gap-4 py-2">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center">
+                        <Icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-foreground">
+                          {item.title}
+                        </h3>
+                        <p className="text-muted-foreground mt-1">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  </AnimatedBenefit>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What We Expect From You */}
+      <section className="py-20 md:py-32 bg-background">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mx-auto">
+            <AnimatedSection className="text-center mb-12">
+              <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4">
+                Your Commitment
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                What We Expect From You
+              </h2>
+              <p className="mt-4 text-muted-foreground">
+                Being upfront removes uncertainty. Here's what success looks like.
+              </p>
+            </AnimatedSection>
+
+            <AnimatedTextBlock>
+              <div className="bg-card border border-border rounded-3xl p-8">
+                <ul className="space-y-4">
+                  {whatWeExpect.map((item, index) => (
+                    <li key={index} className="flex items-start gap-3 text-foreground">
+                      <Check className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </AnimatedTextBlock>
           </div>
         </div>
       </section>
@@ -134,7 +235,7 @@ export default function GetStarted() {
             </div>
 
             {isSubmitted ? (
-              <div className="bg-card border border-primary/30 rounded-xl p-12 text-center">
+              <div className="bg-card border border-primary/30 rounded-3xl p-12 text-center">
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
                   <Check className="w-8 h-8 text-primary" />
                 </div>
@@ -146,7 +247,7 @@ export default function GetStarted() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="bg-card border border-border rounded-xl p-8 space-y-6">
+              <form onSubmit={handleSubmit} className="bg-card border border-border rounded-3xl p-8 space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                     Full Name
@@ -157,7 +258,7 @@ export default function GetStarted() {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-150"
+                    className="w-full px-4 py-3 rounded-3xl border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-150"
                     placeholder="Your full name"
                   />
                 </div>
@@ -172,7 +273,7 @@ export default function GetStarted() {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-150"
+                    className="w-full px-4 py-3 rounded-3xl border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-150"
                     placeholder="you@example.com"
                   />
                 </div>
@@ -186,7 +287,7 @@ export default function GetStarted() {
                     id="phone"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-150"
+                    className="w-full px-4 py-3 rounded-3xl border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-150"
                     placeholder="(555) 123-4567"
                   />
                 </div>
@@ -199,7 +300,7 @@ export default function GetStarted() {
                     id="experience"
                     value={formData.experience}
                     onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-150"
+                    className="w-full px-4 py-3 rounded-3xl border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-150"
                   >
                     <option value="">Select an option</option>
                     <option value="yes">Yes, I have experience</option>
@@ -216,7 +317,7 @@ export default function GetStarted() {
                     id="availability"
                     value={formData.availability}
                     onChange={(e) => setFormData({ ...formData, availability: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-150"
+                    className="w-full px-4 py-3 rounded-3xl border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-150"
                   >
                     <option value="">Select your preference</option>
                     <option value="full-time">Full-time</option>
@@ -227,7 +328,7 @@ export default function GetStarted() {
 
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-lg transition-all duration-150 ease-human hover:bg-primary/90 press-effect focus-ring group"
+                  className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-3xl transition-all duration-150 ease-human hover:bg-transparent hover:text-primary border-2 border-primary press-effect focus-ring group"
                 >
                   Submit Application
                   <ArrowRight className="w-5 h-5 transition-transform duration-150 ease-human group-hover:translate-x-0.5" />

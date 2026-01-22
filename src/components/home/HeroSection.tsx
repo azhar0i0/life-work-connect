@@ -68,7 +68,7 @@ export function HeroSection() {
           >
             <Link
               to="/get-started"
-              className="inline-flex items-center gap-2 mt-8 md:mt-10 px-8 py-4 bg-primary text-primary-foreground font-semibold text-base md:text-lg rounded-lg transition-all duration-150 ease-human hover:bg-primary/90 press-effect focus-ring group"
+              className="inline-flex items-center gap-2 mt-8 md:mt-10 px-8 py-4 bg-primary text-primary-foreground font-semibold text-base md:text-lg rounded-3xl transition-all duration-150 ease-human hover:bg-transparent hover:text-primary border-2 border-primary press-effect focus-ring group"
             >
               Get Started Today
               <ArrowRight className="w-5 h-5 transition-transform duration-150 ease-human group-hover:translate-x-0.5" />
