@@ -127,18 +127,78 @@
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Subtle hover effects - no glow, no pulse */
+  /* ========================================
+     MICRO-INTERACTIONS (Subtle & Intentional)
+     ======================================== */
+
+  /* Subtle hover lift - buttons, cards */
   .hover-lift {
-    @apply transition-transform duration-200 ease-human;
+    @apply transition-all duration-150;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
   }
   
   .hover-lift:hover {
     transform: translateY(-2px);
   }
 
-  /* Button press effect - haptic feel */
+  /* Interactive card hover */
+  .card-hover {
+    @apply transition-all duration-150;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px -8px hsl(var(--foreground) / 0.08);
+  }
+
+  /* Link underline animation */
+  .link-hover {
+    @apply relative;
+  }
+
+  .link-hover::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-[1px] bg-current;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .link-hover:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Button press effect - haptic feel (120ms) */
+  .press-effect {
+    @apply transition-transform;
+    transition-duration: 120ms;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
   .press-effect:active {
     transform: scale(0.98);
+  }
+
+  /* Gentle opacity shift on hover */
+  .opacity-hover {
+    @apply transition-opacity duration-150;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .opacity-hover:hover {
+    opacity: 0.8;
+  }
+
+  /* Scale hover - very subtle */
+  .scale-hover {
+    @apply transition-transform duration-150;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .scale-hover:hover {
+    transform: scale(1.02);
   }
 
   /* Border draw animation helper */
@@ -162,6 +222,12 @@
   /* Focus ring - uses primary color */
   .focus-ring {
     @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  /* Interactive element base - combine with specific hover */
+  .interactive {
+    @apply cursor-pointer select-none;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
