@@ -2,14 +2,23 @@ import { AnimatedSection, AnimatedTextBlock } from '@/components/ui/AnimatedSect
 
 export function TrustStatementSection() {
   return (
-    <section className="py-20 md:py-32 bg-background">
+    <section 
+      className="py-20 md:py-32 bg-background"
+      aria-labelledby="trust-heading"
+    >
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto">
           <AnimatedSection className="text-center mb-12">
-            <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4">
+            <span 
+              className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4"
+              aria-hidden="true"
+            >
               Our Promise
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-balance">
+            <h2 
+              id="trust-heading"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-balance"
+            >
               Built for Real People, Not Hustle Culture
             </h2>
           </AnimatedSection>
@@ -32,8 +41,8 @@ export function TrustStatementSection() {
             <AnimatedTextBlock delay={300}>
               <div className="pt-8 border-t border-border mt-8">
                 <p className="text-lg md:text-xl text-foreground font-medium text-center">
-                  This isn't gig work.<br />
-                  This isn't a side hustle.<br />
+                  This isn't gig work.<br aria-hidden="true" />
+                  This isn't a side hustle.<br aria-hidden="true" />
                   <span className="text-primary">This is legitimate remote employment.</span>
                 </p>
               </div>

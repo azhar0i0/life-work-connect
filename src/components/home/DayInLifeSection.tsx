@@ -20,16 +20,16 @@ const daySteps = [
   {
     time: 'End of Day',
     action: 'End your workday without a commute',
-    detail: 'Close your laptop and you\'re already home.',
+    detail: "Close your laptop and you're already home.",
   },
 ];
 
 function DayStep({ step, index }: { step: typeof daySteps[0]; index: number }) {
-  const { ref, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
+  const { ref, isVisible } = useScrollAnimation<HTMLLIElement>({ threshold: 0.3 });
   const delay = index * 100;
 
   return (
-    <div
+    <li
       ref={ref}
       className="relative pl-8 pb-8 last:pb-0"
       style={{
@@ -39,7 +39,7 @@ function DayStep({ step, index }: { step: typeof daySteps[0]; index: number }) {
                      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms`,
       }}
     >
-      {/* Timeline line */}
+      {/* Timeline line - decorative */}
       {index < daySteps.length - 1 && (
         <div 
           className="absolute left-[7px] top-4 bottom-0 w-0.5 bg-border origin-top"
@@ -47,10 +47,11 @@ function DayStep({ step, index }: { step: typeof daySteps[0]; index: number }) {
             transform: isVisible ? 'scaleY(1)' : 'scaleY(0)',
             transition: `transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${delay + 200}ms`,
           }}
+          aria-hidden="true"
         />
       )}
       
-      {/* Timeline dot */}
+      {/* Timeline dot - decorative */}
       <div 
         className="absolute left-0 top-1 w-4 h-4 rounded-full border-2 border-primary bg-background"
         style={{
@@ -59,6 +60,7 @@ function DayStep({ step, index }: { step: typeof daySteps[0]; index: number }) {
           transition: `opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms, 
                        transform 0.3s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms`,
         }}
+        aria-hidden="true"
       />
       
       <div>
@@ -72,29 +74,41 @@ function DayStep({ step, index }: { step: typeof daySteps[0]; index: number }) {
           {step.detail}
         </p>
       </div>
-    </div>
+    </li>
   );
 }
 
 export function DayInLifeSection() {
   return (
-    <section className="py-20 md:py-32 bg-surface">
+    <section 
+      className="py-20 md:py-32 bg-surface"
+      aria-labelledby="day-in-life-heading"
+    >
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           <AnimatedSection className="text-center mb-16">
-            <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4">
+            <span 
+              className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4"
+              aria-hidden="true"
+            >
               A Typical Day
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-balance">
+            <h2 
+              id="day-in-life-heading"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-balance"
+            >
               What a Typical Workday Looks Like
             </h2>
           </AnimatedSection>
 
-          <div className="max-w-xl mx-auto">
+          <ol 
+            className="max-w-xl mx-auto"
+            aria-label="Timeline of a typical workday"
+          >
             {daySteps.map((step, index) => (
               <DayStep key={index} step={step} index={index} />
             ))}
-          </div>
+          </ol>
         </div>
       </div>
     </section>
