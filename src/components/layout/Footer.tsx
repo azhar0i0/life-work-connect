@@ -12,12 +12,20 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-foreground text-background">
+    <footer 
+      className="bg-foreground text-background"
+      role="contentinfo"
+      aria-label="Site footer"
+    >
       <div className="container mx-auto px-6 py-12 md:py-16">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {/* Brand */}
           <div className="space-y-4">
-            <Link to="/" className="inline-block text-2xl font-bold tracking-tight">
+            <Link 
+              to="/" 
+              className="inline-block text-2xl font-bold tracking-tight focus-ring rounded-md"
+              aria-label="Nexalight - Go to homepage"
+            >
               <span className="text-primary">Nexa</span>light
             </Link>
             <p className="text-background/70 text-sm max-w-xs leading-relaxed">
@@ -26,43 +34,46 @@ export function Footer() {
           </div>
 
           {/* Links */}
-          <div className="space-y-4">
-            <h4 className="font-semibold text-sm uppercase tracking-wider text-background/50">
+          <nav aria-label="Footer navigation">
+            <h2 className="font-semibold text-sm uppercase tracking-wider text-background/50 mb-4">
               Navigation
-            </h4>
-            <nav className="flex flex-col gap-2">
+            </h2>
+            <ul className="flex flex-col gap-2">
               {footerLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  to={link.href}
-                  className="text-background/70 hover:text-primary transition-colors duration-150 ease-human text-sm w-fit focus-ring rounded-sm"
-                >
-                  {link.label}
-                </Link>
+                <li key={link.href}>
+                  <Link
+                    to={link.href}
+                    className="text-background/70 hover:text-primary transition-colors duration-150 ease-human text-sm w-fit focus-ring rounded-sm inline-block"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
               ))}
-            </nav>
-          </div>
+            </ul>
+          </nav>
 
           {/* Contact */}
-          <div className="space-y-4">
-            <h4 className="font-semibold text-sm uppercase tracking-wider text-background/50">
+          <address className="space-y-4 not-italic">
+            <h2 className="font-semibold text-sm uppercase tracking-wider text-background/50">
               Contact
-            </h4>
+            </h2>
             <div className="space-y-2 text-sm">
               <a
                 href="mailto:info@nexalightvs.com"
                 className="block text-background/70 hover:text-primary transition-colors duration-150 ease-human w-fit focus-ring rounded-sm"
+                aria-label="Email us at info@nexalightvs.com"
               >
                 info@nexalightvs.com
               </a>
               <a
                 href="tel:317-572-5034"
                 className="block text-background/70 hover:text-primary transition-colors duration-150 ease-human w-fit focus-ring rounded-sm"
+                aria-label="Call us at 317-572-5034"
               >
                 317-572-5034
               </a>
             </div>
-          </div>
+          </address>
         </div>
 
         {/* Bottom Bar */}
@@ -71,7 +82,7 @@ export function Footer() {
             <p className="text-background/50 text-sm">
               © {currentYear} Nexalight Virtual Solutions. All rights reserved.
             </p>
-            <p className="text-background/40 text-xs">
+            <p className="text-background/40 text-xs" aria-label="Company keywords">
               Remote Work • Customer Support • Work-Life Balance
             </p>
           </div>

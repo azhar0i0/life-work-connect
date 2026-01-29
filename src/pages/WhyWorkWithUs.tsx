@@ -40,17 +40,17 @@ const stabilityPoints = [
   {
     icon: Shield,
     title: 'Established Partners',
-    description: 'We work with reputable brands that have been in business for years—not fly-by-night operations.',
+    description: "We work with reputable brands that have been in business for years—not fly-by-night operations.",
   },
   {
     icon: GraduationCap,
     title: 'Compensated Training',
-    description: 'Your investment of time is valued from day one. Training isn\'t a gamble—it\'s paid.',
+    description: "Your investment of time is valued from day one. Training isn't a gamble—it's paid.",
   },
   {
     icon: TrendingUp,
     title: 'Consistent Work',
-    description: 'This isn\'t gig work with unpredictable hours. We offer structured, reliable opportunities.',
+    description: "This isn't gig work with unpredictable hours. We offer structured, reliable opportunities.",
   },
 ];
 
@@ -65,13 +65,22 @@ export default function WhyWorkWithUs() {
   return (
     <Layout>
       {/* Hero */}
-      <section className="py-20 md:py-32 bg-surface">
+      <section 
+        className="py-20 md:py-32 bg-surface"
+        aria-labelledby="why-us-heading"
+      >
         <div className="container mx-auto px-6">
           <AnimatedSection className="max-w-3xl mx-auto text-center">
-            <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4">
+            <span 
+              className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4"
+              aria-hidden="true"
+            >
               Why Us
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground text-balance">
+            <h1 
+              id="why-us-heading"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground text-balance"
+            >
               Why Nexalight Virtual Solutions?
             </h1>
             <p className="mt-6 text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -82,13 +91,22 @@ export default function WhyWorkWithUs() {
       </section>
 
       {/* Our Difference - Benefits Grid */}
-      <section className="py-20 md:py-32 bg-background">
+      <section 
+        className="py-20 md:py-32 bg-background"
+        aria-labelledby="difference-heading"
+      >
         <div className="container mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
-            <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4">
+            <span 
+              className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4"
+              aria-hidden="true"
+            >
               The Difference
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+            <h2 
+              id="difference-heading"
+              className="text-3xl md:text-4xl font-bold text-foreground"
+            >
               Why This Isn't Gig Work
             </h2>
             <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
@@ -96,40 +114,57 @@ export default function WhyWorkWithUs() {
             </p>
           </AnimatedSection>
 
-          <div className="max-w-5xl mx-auto grid gap-8 md:grid-cols-2">
+          <ul 
+            className="max-w-5xl mx-auto grid gap-8 md:grid-cols-2"
+            aria-label="Six key benefits of working with us"
+          >
             {benefits.map((benefit, index) => {
               const Icon = benefit.icon;
               return (
-                <AnimatedBenefit key={index} index={index}>
-                  <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
-                      <Icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-foreground mb-2">
-                        {benefit.title}
-                      </h3>
-                      <p className="text-muted-foreground leading-relaxed">
-                        {benefit.description}
-                      </p>
-                    </div>
-                  </div>
-                </AnimatedBenefit>
+                <li key={index}>
+                  <AnimatedBenefit index={index}>
+                    <article className="flex gap-4">
+                      <div 
+                        className="flex-shrink-0 w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center"
+                        aria-hidden="true"
+                      >
+                        <Icon className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-foreground mb-2">
+                          {benefit.title}
+                        </h3>
+                        <p className="text-muted-foreground leading-relaxed">
+                          {benefit.description}
+                        </p>
+                      </div>
+                    </article>
+                  </AnimatedBenefit>
+                </li>
               );
             })}
-          </div>
+          </ul>
         </div>
       </section>
 
       {/* Stability & Legitimacy */}
-      <section className="py-20 md:py-32 bg-surface">
+      <section 
+        className="py-20 md:py-32 bg-surface"
+        aria-labelledby="stability-heading"
+      >
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <AnimatedSection className="text-center mb-16">
-              <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4">
+              <span 
+                className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4"
+                aria-hidden="true"
+              >
                 Stability
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              <h2 
+                id="stability-heading"
+                className="text-3xl md:text-4xl font-bold text-foreground"
+              >
                 Stability & Legitimacy
               </h2>
               <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
@@ -137,39 +172,56 @@ export default function WhyWorkWithUs() {
               </p>
             </AnimatedSection>
 
-            <div className="grid gap-6 md:grid-cols-3">
+            <ul 
+              className="grid gap-6 md:grid-cols-3"
+              aria-label="Three pillars of our stability"
+            >
               {stabilityPoints.map((point, index) => {
                 const Icon = point.icon;
                 return (
-                  <AnimatedTextBlock key={index} delay={index * 100}>
-                    <div className="bg-card border border-border rounded-3xl p-6 h-full text-center">
-                      <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                        <Icon className="w-6 h-6 text-primary" />
-                      </div>
-                      <h3 className="text-lg font-semibold text-foreground mb-2">
-                        {point.title}
-                      </h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        {point.description}
-                      </p>
-                    </div>
-                  </AnimatedTextBlock>
+                  <li key={index}>
+                    <AnimatedTextBlock delay={index * 100}>
+                      <article className="bg-card border border-border rounded-3xl p-6 h-full text-center">
+                        <div 
+                          className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4"
+                          aria-hidden="true"
+                        >
+                          <Icon className="w-6 h-6 text-primary" />
+                        </div>
+                        <h3 className="text-lg font-semibold text-foreground mb-2">
+                          {point.title}
+                        </h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {point.description}
+                        </p>
+                      </article>
+                    </AnimatedTextBlock>
+                  </li>
                 );
               })}
-            </div>
+            </ul>
           </div>
         </div>
       </section>
 
       {/* Long-Term Fit */}
-      <section className="py-20 md:py-32 bg-background">
+      <section 
+        className="py-20 md:py-32 bg-background"
+        aria-labelledby="long-term-heading"
+      >
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
             <AnimatedSection className="text-center mb-12">
-              <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4">
+              <span 
+                className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4"
+                aria-hidden="true"
+              >
                 Long-Term Success
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              <h2 
+                id="long-term-heading"
+                className="text-3xl md:text-4xl font-bold text-foreground"
+              >
                 Who Succeeds Here Long-Term
               </h2>
               <p className="mt-4 text-muted-foreground">
@@ -178,34 +230,46 @@ export default function WhyWorkWithUs() {
             </AnimatedSection>
 
             <AnimatedTextBlock>
-              <div className="bg-card border border-border rounded-3xl p-8">
+              <article className="bg-card border border-border rounded-3xl p-8">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center">
+                  <div 
+                    className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center"
+                    aria-hidden="true"
+                  >
                     <Users className="w-5 h-5 text-primary" />
                   </div>
                   <h3 className="text-lg font-semibold text-foreground">
                     This role is ideal for:
                   </h3>
                 </div>
-                <ul className="space-y-3">
+                <ul className="space-y-3" aria-label="Ideal candidate traits">
                   {longTermFit.map((item, index) => (
                     <li key={index} className="flex items-start gap-3 text-muted-foreground">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                      <span 
+                        className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" 
+                        aria-hidden="true"
+                      />
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
+              </article>
             </AnimatedTextBlock>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-20 md:py-32 bg-surface">
+      <section 
+        className="py-20 md:py-32 bg-surface"
+        aria-labelledby="cta-heading"
+      >
         <div className="container mx-auto px-6">
           <AnimatedSection className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+            <h2 
+              id="cta-heading"
+              className="text-3xl md:text-4xl font-bold text-foreground mb-6"
+            >
               Ready to make the change?
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
@@ -216,7 +280,7 @@ export default function WhyWorkWithUs() {
               className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-semibold text-lg rounded-3xl transition-all duration-150 ease-human hover:bg-transparent hover:text-primary border-2 border-primary press-effect focus-ring group"
             >
               Get Started Today
-              <ArrowRight className="w-5 h-5 transition-transform duration-150 ease-human group-hover:translate-x-0.5" />
+              <ArrowRight className="w-5 h-5 transition-transform duration-150 ease-human group-hover:translate-x-0.5" aria-hidden="true" />
             </Link>
           </AnimatedSection>
         </div>

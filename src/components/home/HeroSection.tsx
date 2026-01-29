@@ -11,7 +11,10 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-[88vh] flex items-center overflow-hidden">
+    <section 
+      className="relative min-h-[88vh] flex items-center overflow-hidden"
+      aria-labelledby="hero-heading"
+    >
       {/* Subtle background */}
       <div
         className="absolute inset-0 bg-gradient-to-br from-surface via-background to-background"
@@ -19,6 +22,7 @@ export function HeroSection() {
           opacity: isLoaded ? 1 : 0,
           transition: 'opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1)',
         }}
+        aria-hidden="true"
       />
 
       <div className="container mx-auto px-6 relative z-10">
@@ -33,12 +37,14 @@ export function HeroSection() {
                 transform: isLoaded ? 'translateY(0)' : 'translateY(8px)',
                 transition: 'opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.1s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.1s',
               }}
+              aria-hidden="true"
             >
               Remote Work • Customer Support • Flexibility
             </p>
 
             {/* Main Headline */}
             <h1
+              id="hero-heading"
               className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold tracking-tight text-foreground leading-[1.1]"
               style={{
                 opacity: isLoaded ? 1 : 0,
@@ -83,13 +89,15 @@ export function HeroSection() {
                 transform: isLoaded ? 'translateY(0)' : 'translateY(10px)',
                 transition: 'opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.4s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.4s',
               }}
+              role="group"
+              aria-label="Call to action buttons"
             >
               <Link
                 to="/get-started"
                 className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-primary-foreground font-semibold text-base rounded-3xl transition-all duration-150 ease-human hover:bg-transparent hover:text-primary border-2 border-primary press-effect focus-ring group"
               >
                 Get Started
-                <ArrowRight className="w-4 h-4 transition-transform duration-150 ease-human group-hover:translate-x-0.5" />
+                <ArrowRight className="w-4 h-4 transition-transform duration-150 ease-human group-hover:translate-x-0.5" aria-hidden="true" />
               </Link>
               <Link
                 to="/about"
@@ -100,13 +108,15 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Right: Abstract Editorial Shape */}
+          {/* Right: Abstract Editorial Shape - decorative */}
           <div
             className="hidden lg:flex justify-center items-center"
             style={{
               opacity: isLoaded ? 1 : 0,
               transition: 'opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s',
             }}
+            aria-hidden="true"
+            role="presentation"
           >
             <div className="relative w-full max-w-md aspect-square">
               {/* Primary shape - restrained geometric */}

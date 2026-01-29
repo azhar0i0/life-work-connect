@@ -7,13 +7,22 @@ export default function About() {
   return (
     <Layout>
       {/* Hero */}
-      <section className="py-20 md:py-32 bg-surface">
+      <section 
+        className="py-20 md:py-32 bg-surface"
+        aria-labelledby="about-heading"
+      >
         <div className="container mx-auto px-6">
           <AnimatedSection className="max-w-3xl mx-auto text-center">
-            <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4">
+            <span 
+              className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4"
+              aria-hidden="true"
+            >
               About Us
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground text-balance">
+            <h1 
+              id="about-heading"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground text-balance"
+            >
               About Nexalight Virtual Solutions
             </h1>
             <p className="mt-6 text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -24,9 +33,13 @@ export default function About() {
       </section>
 
       {/* Story */}
-      <section className="py-20 md:py-32 bg-background">
+      <section 
+        className="py-20 md:py-32 bg-background"
+        aria-labelledby="our-story-heading"
+      >
         <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto space-y-8">
+          <h2 id="our-story-heading" className="sr-only">Our Story</h2>
+          <article className="max-w-3xl mx-auto space-y-8">
             <AnimatedTextBlock>
               <p className="text-lg md:text-xl text-foreground/90 leading-relaxed">
                 At Nexalight Virtual Solutions, we partner with established companies that need 
@@ -50,7 +63,7 @@ export default function About() {
                 opportunities that work with your reality.
               </p>
             </AnimatedTextBlock>
-          </div>
+          </article>
         </div>
       </section>
 
