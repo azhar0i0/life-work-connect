@@ -2,8 +2,15 @@ import { useState } from 'react';
 import { Layout } from '@/components/layout/Layout';
 import { AnimatedSection, AnimatedTextBlock, AnimatedBenefit } from '@/components/ui/AnimatedSection';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { ClipboardCheck, GraduationCap, Home, ArrowRight, Check, MessageSquare, Headphones, BookOpen } from 'lucide-react';
+import { ClipboardCheck, GraduationCap, Home, ArrowRight, Check, MessageSquare, Headphones, BookOpen, ChevronDown } from 'lucide-react';
 import { LiveRegion } from '@/components/ui/LiveRegion';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 const steps = [
   {
@@ -368,36 +375,56 @@ export default function GetStarted() {
                   <label htmlFor="apply-experience" className="block text-sm font-medium text-foreground mb-2">
                     Do you have call center experience?
                   </label>
-                  <select
-                    id="apply-experience"
-                    name="experience"
+                  <Select
                     value={formData.experience}
-                    onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                    className="w-full px-4 py-3 rounded-3xl border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-150"
+                    onValueChange={(value) => setFormData({ ...formData, experience: value })}
                   >
-                    <option value="">Select an option</option>
-                    <option value="yes">Yes, I have experience</option>
-                    <option value="some">Some experience</option>
-                    <option value="no">No, but I'm eager to learn</option>
-                  </select>
+                    <SelectTrigger 
+                      id="apply-experience"
+                      className="w-full px-4 py-3 h-auto rounded-3xl border border-input bg-background text-foreground focus:ring-2 focus:ring-primary focus:ring-offset-0 transition-all duration-150"
+                    >
+                      <SelectValue placeholder="Select an option" />
+                    </SelectTrigger>
+                    <SelectContent className="rounded-2xl border border-border bg-popover shadow-lg">
+                      <SelectItem value="yes" className="rounded-xl cursor-pointer focus:bg-primary/10 focus:text-foreground">
+                        Yes, I have experience
+                      </SelectItem>
+                      <SelectItem value="some" className="rounded-xl cursor-pointer focus:bg-primary/10 focus:text-foreground">
+                        Some experience
+                      </SelectItem>
+                      <SelectItem value="no" className="rounded-xl cursor-pointer focus:bg-primary/10 focus:text-foreground">
+                        No, but I'm eager to learn
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <div>
                   <label htmlFor="apply-availability" className="block text-sm font-medium text-foreground mb-2">
                     Preferred Schedule
                   </label>
-                  <select
-                    id="apply-availability"
-                    name="availability"
+                  <Select
                     value={formData.availability}
-                    onChange={(e) => setFormData({ ...formData, availability: e.target.value })}
-                    className="w-full px-4 py-3 rounded-3xl border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-150"
+                    onValueChange={(value) => setFormData({ ...formData, availability: value })}
                   >
-                    <option value="">Select your preference</option>
-                    <option value="full-time">Full-time</option>
-                    <option value="part-time">Part-time</option>
-                    <option value="flexible">Flexible / Varies</option>
-                  </select>
+                    <SelectTrigger 
+                      id="apply-availability"
+                      className="w-full px-4 py-3 h-auto rounded-3xl border border-input bg-background text-foreground focus:ring-2 focus:ring-primary focus:ring-offset-0 transition-all duration-150"
+                    >
+                      <SelectValue placeholder="Select your preference" />
+                    </SelectTrigger>
+                    <SelectContent className="rounded-2xl border border-border bg-popover shadow-lg">
+                      <SelectItem value="full-time" className="rounded-xl cursor-pointer focus:bg-primary/10 focus:text-foreground">
+                        Full-time
+                      </SelectItem>
+                      <SelectItem value="part-time" className="rounded-xl cursor-pointer focus:bg-primary/10 focus:text-foreground">
+                        Part-time
+                      </SelectItem>
+                      <SelectItem value="flexible" className="rounded-xl cursor-pointer focus:bg-primary/10 focus:text-foreground">
+                        Flexible / Varies
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <button

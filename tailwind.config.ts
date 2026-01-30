@@ -133,6 +133,11 @@ export default {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(2px)" },
         },
+        // Infinite marquee
+        "marquee": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         // Accordion
@@ -152,6 +157,8 @@ export default {
         "page-enter": "page-enter 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards",
         // Chevron
         "chevron-open": "chevron-rotate 0.2s cubic-bezier(0.22, 1, 0.36, 1) forwards",
+        // Marquee
+        "marquee": "marquee 30s linear infinite",
       },
       transitionTimingFunction: {
         human: "cubic-bezier(0.22, 1, 0.36, 1)",
