@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useEscapeKey } from '@/hooks/useFocusTrap';
+import logo from '@/assets/logo.png';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -66,10 +67,14 @@ export function Header() {
           {/* Logo */}
           <Link
             to="/"
-            className="text-xl md:text-2xl font-bold text-foreground tracking-tight hover-lift focus-ring rounded-md"
+            className="hover-lift focus-ring rounded-md"
             aria-label="Nexalight - Go to homepage"
           >
-            <span className="text-primary">Nexa</span>light
+            <img 
+              src={logo} 
+              alt="Nexalight Virtual Solutions" 
+              className="h-10 md:h-12 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}
