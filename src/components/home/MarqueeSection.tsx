@@ -1,3 +1,4 @@
+import { motion, useReducedMotion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 const marqueeItems = [
@@ -29,8 +30,14 @@ function MarqueeContent({ className }: { className?: string }) {
 }
 
 export function MarqueeSection() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <section 
+    <motion.section 
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
       className="py-6 md:py-8 bg-surface border-y border-border overflow-hidden"
       aria-label="Brand values"
     >
@@ -47,7 +54,10 @@ export function MarqueeSection() {
         
         {/* Marquee track */}
         <div 
-          className="flex animate-marquee hover:[animation-play-state:paused]"
+          className={cn(
+            "flex hover:[animation-play-state:paused]",
+            !prefersReducedMotion && "animate-marquee"
+          )}
           aria-hidden="true"
         >
           <MarqueeContent />
@@ -63,6 +73,6 @@ export function MarqueeSection() {
           ))}
         </ul>
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -1,5 +1,7 @@
+import { motion, useReducedMotion, Variants } from 'framer-motion';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+
+const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const daySteps = [
   {
@@ -24,42 +26,68 @@ const daySteps = [
   },
 ];
 
+const stepVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: customEase,
+    },
+  },
+};
+
+const lineVariants: Variants = {
+  hidden: { scaleY: 0 },
+  visible: {
+    scaleY: 1,
+    transition: {
+      duration: 0.6,
+      ease: customEase,
+    },
+  },
+};
+
+const dotVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.5 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.3,
+      ease: customEase,
+    },
+  },
+};
+
 function DayStep({ step, index }: { step: typeof daySteps[0]; index: number }) {
-  const { ref, isVisible } = useScrollAnimation<HTMLLIElement>({ threshold: 0.3 });
-  const delay = index * 100;
+  const prefersReducedMotion = useReducedMotion();
 
   return (
-    <li
-      ref={ref}
+    <motion.li
       className="relative pl-8 pb-8 last:pb-0"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(10px)',
-        transition: `opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms, 
-                     transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms`,
-      }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.5 }}
+      variants={stepVariants}
+      custom={index}
+      transition={{ delay: index * 0.1 }}
     >
-      {/* Timeline line - decorative */}
+      {/* Timeline line */}
       {index < daySteps.length - 1 && (
-        <div 
+        <motion.div 
           className="absolute left-[7px] top-4 bottom-0 w-0.5 bg-border origin-top"
-          style={{
-            transform: isVisible ? 'scaleY(1)' : 'scaleY(0)',
-            transition: `transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${delay + 200}ms`,
-          }}
+          variants={!prefersReducedMotion ? lineVariants : undefined}
+          transition={{ delay: index * 0.1 + 0.2 }}
           aria-hidden="true"
         />
       )}
       
-      {/* Timeline dot - decorative */}
-      <div 
+      {/* Timeline dot */}
+      <motion.div 
         className="absolute left-0 top-1 w-4 h-4 rounded-full border-2 border-primary bg-background"
-        style={{
-          opacity: isVisible ? 1 : 0,
-          transform: isVisible ? 'scale(1)' : 'scale(0.5)',
-          transition: `opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms, 
-                       transform 0.3s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms`,
-        }}
+        variants={!prefersReducedMotion ? dotVariants : undefined}
         aria-hidden="true"
       />
       
@@ -74,31 +102,39 @@ function DayStep({ step, index }: { step: typeof daySteps[0]; index: number }) {
           {step.detail}
         </p>
       </div>
-    </li>
+    </motion.li>
   );
 }
 
 export function DayInLifeSection() {
   return (
     <section 
-      className="py-20 md:py-32 bg-surface"
+      className="py-20 md:py-32 bg-surface overflow-hidden"
       aria-labelledby="day-in-life-heading"
     >
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           <AnimatedSection className="text-center mb-16">
-            <span 
+            <motion.span 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
               className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4"
               aria-hidden="true"
             >
               A Typical Day
-            </span>
-            <h2 
+            </motion.span>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1, ease: customEase }}
               id="day-in-life-heading"
               className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-balance"
             >
               What a Typical Workday Looks Like
-            </h2>
+            </motion.h2>
           </AnimatedSection>
 
           <ol 
